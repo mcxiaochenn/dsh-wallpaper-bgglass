@@ -1,0 +1,63 @@
+{
+  "name": "dsh-wallpaper-bg",
+  "version": "1.0.0",
+  "private": true,
+  "description": "DeepSeek Harness plugin: local wallpapers with opacity/blur and glass UI surfaces.",
+  "license": "MIT",
+  "author": "辰渊尘 (mcxiaochenn) <mcxiaochenn.yyds@gmail.com>",
+  "type": "module",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "cordis.patch.yml",
+    "locale/*.json",
+    "icon.svg",
+    "assets/default-wallpaper.webp",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "check": "node scripts/check.mjs"
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "wallpaper",
+    "background",
+    "glassmorphism"
+  ],
+  "engines": {
+    "dsh": ">=0.2.0-rc.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mcxiaochenn/dsh-wallpaper-bg.git"
+  },
+  "homepage": "https://github.com/mcxiaochenn/dsh-wallpaper-bg#readme",
+  "bugs": {
+    "url": "https://github.com/mcxiaochenn/dsh-wallpaper-bg/issues"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-slots",
+        "@deepseek-ai/dsh-client-ui-layout",
+        "@deepseek-ai/dsh-client-ui-sidebar",
+        "@deepseek-ai/dsh-client-locale"
+      ]
+    }
+  }
+}
