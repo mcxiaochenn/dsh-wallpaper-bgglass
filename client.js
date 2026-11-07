@@ -15,18 +15,18 @@
 // override the palette tokens they already paint with, so the host keeps
 // owning layout, radii, borders and content.
 window.__ModuleLoader__.load({
-  id: 'dsh-wallpaper-bg',
+  id: 'dsh-wallpaper-glass',
   factory: (require) => {
     const React = require('react');
     const h = React.createElement;
     const { useCallback, useRef, useState, useSyncExternalStore } = React;
 
     /** Main-panel id, also the sidebar.panellist cell id. */
-    const PANEL_ID = 'dsh-wallpaper-bg';
+    const PANEL_ID = 'dsh-wallpaper-glass';
     /** Locale namespace owned by this plugin. */
-    const NS = 'dsh-wallpaper-bg';
+    const NS = 'dsh-wallpaper-glass';
     /** Marker on the injected stylesheet, so HMR cannot stack duplicates. */
-    const STYLE_ID = 'dsh-wallpaper-bg/styles.css';
+    const STYLE_ID = 'dsh-wallpaper-glass/styles.css';
     // Storage identity predates the public project name: keep it stable so a
     // wallpaper picked before this rename keeps loading after an upgrade.
     /** localStorage key for the settings document (JSON). */
@@ -37,7 +37,7 @@ window.__ModuleLoader__.load({
     const STORE_NAME = 'assets';
     const RECORD_KEY = 'current';
     /** Host route serving the bundled fallback wallpaper. */
-    const DEFAULT_ROUTE = '/api/dsh-wallpaper-bg/default';
+    const DEFAULT_ROUTE = '/api/dsh-wallpaper-glass/default';
     /** Refuse absurd files rather than freezing the renderer on decode. */
     const MAX_BYTES = 32 * 1024 * 1024;
     /** Canvas caps for the blurred rendition. */
@@ -788,7 +788,7 @@ window.__ModuleLoader__.load({
 
         ctx.effect(
           () => ctx.locale.register(NS, { zh, en }),
-          'dsh-wallpaper-bg: dictionaries',
+          'dsh-wallpaper-glass: dictionaries',
         );
         if (typeof ctx.locale.subscribe === 'function' && typeof ctx.locale.getSnapshot === 'function') {
           subscribeLocale = (listener) => ctx.locale.subscribe(listener);
@@ -798,7 +798,7 @@ window.__ModuleLoader__.load({
           localeSnapshot = () => (typeof ctx.locale.getLocale === 'function' ? ctx.locale.getLocale() : 0);
         }
 
-        ctx.effect(() => installStyles(), 'dsh-wallpaper-bg: stylesheet');
+        ctx.effect(() => installStyles(), 'dsh-wallpaper-glass: stylesheet');
 
         ctx.effect(() => {
           boot();
@@ -831,7 +831,7 @@ window.__ModuleLoader__.load({
             ]) root.style.removeProperty(name);
             root.removeAttribute('data-dsh-wallpaper');
           };
-        }, 'dsh-wallpaper-bg: background state');
+        }, 'dsh-wallpaper-glass: background state');
 
         ctx.effect(() => ctx.slots.inject('main', () => ctx.slots.inject('sidebar.panellist', () => {
           const stopPanel = ctx.slots.register({
@@ -856,7 +856,7 @@ window.__ModuleLoader__.load({
             stopEntry();
             stopPanel();
           };
-        })), 'dsh-wallpaper-bg: sidebar entry and panel');
+        })), 'dsh-wallpaper-glass: sidebar entry and panel');
       },
     };
   },

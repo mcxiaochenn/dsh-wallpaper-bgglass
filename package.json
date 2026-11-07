@@ -1,7 +1,6 @@
 {
-  "name": "dsh-wallpaper-bg",
+  "name": "dsh-wallpaper-glass",
   "version": "1.0.0",
-  "private": true,
   "description": "DeepSeek Harness plugin: local wallpapers with opacity/blur and glass UI surfaces.",
   "license": "MIT",
   "author": "辰渊尘 (mcxiaochenn) <mcxiaochenn.yyds@gmail.com>",
@@ -21,10 +20,12 @@
     "icon.svg",
     "assets/default-wallpaper.webp",
     "README.md",
+    "README.en.md",
     "LICENSE"
   ],
   "scripts": {
-    "check": "node scripts/check.mjs"
+    "check": "node scripts/check.mjs",
+    "prepublishOnly": "node scripts/check.mjs"
   },
   "keywords": [
     "dsh",
@@ -34,7 +35,12 @@
     "background",
     "glassmorphism"
   ],
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
   "engines": {
+    "node": ">=20",
     "dsh": ">=0.2.0-rc.1"
   },
   "repository": {

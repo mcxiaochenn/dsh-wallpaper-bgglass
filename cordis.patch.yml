@@ -1,5 +1,5 @@
-# dsh-wallpaper-bg — one plugin row, inserted into whichever profile installs
+# dsh-wallpaper-glass — one plugin row, inserted into whichever profile installs
 # this bundle. The row id is the handle patches target (disable, override).
 - insert:
-    - id: dsh-wallpaper-bg
-      name: dsh-wallpaper-bg
+    - id: dsh-wallpaper-glass
+      name: dsh-wallpaper-glass

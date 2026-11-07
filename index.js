@@ -9,7 +9,7 @@
 import { readFile } from 'node:fs/promises';
 
 /** Route the Client fetches for the bundled wallpaper. */
-const DEFAULT_ROUTE = '/api/dsh-wallpaper-bg/default';
+const DEFAULT_ROUTE = '/api/dsh-wallpaper-glass/default';
 /** Bundled artwork, resolved from this module's own package directory. */
 const DEFAULT_ASSET = new URL('./assets/default-wallpaper.webp', import.meta.url);
 /** Media type of {@link DEFAULT_ASSET}. */
@@ -44,5 +44,5 @@ export function apply(ctx) {
         },
       });
     },
-  }), 'dsh-wallpaper-bg: default wallpaper route');
+  }), 'dsh-wallpaper-glass: default wallpaper route');
 }
