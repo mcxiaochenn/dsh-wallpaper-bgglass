@@ -143,18 +143,23 @@ npm pack --dry-run   # 看 npm 包内容
 
 CI（`.github/workflows/check.yml`）跑 `node --check` 和 `npm run check`。
 
-### 发布到 npm
+### 发布到 npm（staged publishing）
 
-仓库自带 `.github/workflows/publish.yml`：在 GitHub 发布 Release 时自动执行 `npm publish --provenance`，需要先在仓库 Secrets 里加 `NPM_TOKEN`（npm 账号的 Automation token）。
+npm 账号需要先开启 2FA。发布走 npm 的暂存审批流程，机器人只负责上传、人来确认：
 
-本地手动发布：
+1. bump `package.json` 版本，提交并推送。
+2. 发 GitHub Release（或手动 `gh workflow run publish.yml`）。workflow 用仓库 Secret `NPM_TOKEN`（Granular token，权限选 **Read and write (stage only)**）执行 `npm stage publish --provenance`，把版本放进暂存区。
+3. 本地审批（需要 OTP）：
 
 ```powershell
-npm login
-npm publish --access public
+npx npm@latest stage list
+npx npm@latest stage approve <stage-id> --registry=https://registry.npmjs.org
+npx npm@latest stage reject <stage-id> --registry=https://registry.npmjs.org   # 不想要就拒掉
 ```
 
-发布前会跑 `prepublishOnly` 里的自检。版本号发布新版本时手动 bump。
+审批通过后才正式发布（`npm stage approve` 要求账号已开 2FA，会走浏览器验证或 `--otp`）。`npm stage` 需要 npm ≥ 12，workflow 里会先 `npm install -g npm@latest`。
+
+本地直接发布（比如首次创建包）就是常规的 `npm publish --access public`，npm 会要求 2FA 验证；发布前会跑 `prepublishOnly` 里的自检。
 
 ## License
 

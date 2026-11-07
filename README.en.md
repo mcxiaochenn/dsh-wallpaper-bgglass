@@ -143,18 +143,23 @@ There is no build step; `client.js` is the browser half and `index.js` the host 
 
 CI (`.github/workflows/check.yml`) runs `node --check` and `npm run check`.
 
-### Publishing to npm
+### Publishing to npm (staged publishing)
 
-`.github/workflows/publish.yml` publishes with `npm publish --provenance` when a GitHub Release is published. Add an `NPM_TOKEN` repository secret (an npm Automation token) first.
+The npm account must have 2FA enabled. Releases use npm's staged approval flow: automation uploads, a human confirms.
 
-Manual publish:
+1. Bump the `package.json` version, commit and push.
+2. Publish a GitHub Release (or run `gh workflow run publish.yml` manually). The workflow uses the `NPM_TOKEN` repository secret (a granular token with **Read and write (stage only)**) to run `npm stage publish --provenance`, which uploads the version to the staging area.
+3. Approve locally (requires OTP):
 
 ```powershell
-npm login
-npm publish --access public
+npx npm@latest stage list
+npx npm@latest stage approve <stage-id> --registry=https://registry.npmjs.org
+npx npm@latest stage reject <stage-id> --registry=https://registry.npmjs.org   # discard instead
 ```
 
-`prepublishOnly` runs the repository checks. Bump the version for each release.
+Only the approval publishes the version (`npm stage approve` requires 2FA on the account and uses the browser flow or `--otp`). `npm stage` needs npm ≥ 12; the workflow installs `npm@latest` first.
+
+To publish directly from a workstation (for example the first release), use the regular `npm publish --access public`; npm asks for 2FA and runs the `prepublishOnly` checks first.
 
 ## License
 

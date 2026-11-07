@@ -18,12 +18,17 @@ jobs:
         with:
           node-version: 22
           registry-url: https://registry.npmjs.org
+      # `npm stage publish` needs npm 12 or newer.
+      - name: Use the latest npm
+        run: npm install -g npm@latest
       - name: Verify
         run: |
           node --check index.js
           node --check client.js
           npm run check
-      - name: Publish to npm
-        run: npm publish --provenance --access public
+      - name: Stage the package for publishing
+        run: npm stage publish --provenance --access public
         env:
+          # Granular token with "Read and write (stage only)" is enough: staging
+          # never asks for 2FA, the maintainer approves the staged version.
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
