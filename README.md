@@ -1,8 +1,8 @@
-# dsh-wallpaper-glass
+# dsh-wallpaper-bgglass
 
 [英文说明 / English](README.en.md)
 
-![check](https://github.com/mcxiaochenn/dsh-wallpaper-bg/actions/workflows/check.yml/badge.svg)
+![check](https://github.com/mcxiaochenn/dsh-wallpaper-bgglass/actions/workflows/check.yml/badge.svg)
 
 给 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) 的 Web GUI 换本地壁纸，并把侧边栏、顶栏、对话框调成一套可调的毛玻璃。
 
@@ -31,10 +31,10 @@
 ### 从 npm 安装（推荐）
 
 ```text
-plugin_manager install_bundle dsh-wallpaper-glass
+plugin_manager install_bundle dsh-wallpaper-bgglass
 ```
 
-> npm 包名是 `dsh-wallpaper-glass`（GitHub 仓库叫 [dsh-wallpaper-bg](https://github.com/mcxiaochenn/dsh-wallpaper-bg)：`dsh-wallpaper-bg` 这个包名已被其他作者的插件占用）。
+> 仓库名和 npm 包名统一为 `dsh-wallpaper-bgglass`；早期的 `dsh-wallpaper-bg` / `dsh-wallpaper-glass` 两个名字在 npm 上分别被其他插件占用。
 
 安装完刷新页面（桌面端 `Ctrl+R`，必要时 `Ctrl+Shift+R`）。插件管理页里会显示「壁纸 / Wallpaper」。
 
@@ -50,7 +50,7 @@ npm config set registry https://registry.npmmirror.com
 pnpm config set registry https://registry.npmmirror.com
 ```
 
-然后重新执行 `plugin_manager install_bundle dsh-wallpaper-glass`。
+然后重新执行 `plugin_manager install_bundle dsh-wallpaper-bgglass`。
 
 想只对这次安装生效，也可以在 profile 目录写一个 `.npmrc`：
 
@@ -63,13 +63,13 @@ registry=https://registry.npmmirror.com
 ### 从源码安装（开发）
 
 ```powershell
-git clone https://github.com/mcxiaochenn/dsh-wallpaper-bg.git
+git clone https://github.com/mcxiaochenn/dsh-wallpaper-bgglass.git
 ```
 
 把**目录**交给插件管理器（绝对路径）：
 
 ```text
-plugin_manager install_bundle C:\path\to\dsh-wallpaper-bg
+plugin_manager install_bundle C:\path\to\dsh-wallpaper-bgglass
 ```
 
 本地目录是 `link:` 方式安装，改完代码刷新页面即生效，不用重装。
@@ -77,7 +77,7 @@ plugin_manager install_bundle C:\path\to\dsh-wallpaper-bg
 ### 卸载
 
 ```text
-plugin_manager remove_bundle dsh-wallpaper-glass
+plugin_manager remove_bundle dsh-wallpaper-bgglass
 ```
 
 ## 使用
@@ -115,7 +115,7 @@ DSH 的 Web GUI 没有官方的壁纸扩展点，这里全部落在宿主真实�
 | 侧边栏 | `:has(> [data-slot="sidebar"])`（侧边栏列） | 覆盖该列的 `--dsw-specific-sidebar-fill` 为半透明色，并用 `::before` 做背景模糊 |
 | 顶栏 | `html[data-windows-titlebar]` 下 frame 的 `::before`；Web 模式下的 `[data-slot="conversation.header"] header` | 同上，标题栏条与会话 header 共享一套数值 |
 | 对话框 | `[role="dialog"][aria-modal="true"]` | 宿主 modal 和设置面板都走这个 role；半透明底色 + `::before` 背景模糊 |
-| 内置壁纸 | Host 路由 `GET /api/dsh-wallpaper-glass/default` | 直接返回包内 `assets/default-wallpaper.webp`，不往 JS 里塞 base64 |
+| 内置壁纸 | Host 路由 `GET /api/dsh-wallpaper-bgglass/default` | 直接返回包内 `assets/default-wallpaper.webp`，不往 JS 里塞 base64 |
 
 几个关键决定：
 
@@ -130,7 +130,7 @@ DSH 的 Web GUI 没有官方的壁纸扩展点，这里全部落在宿主真实�
 - 图片上限 32 MB；模糊版本的渲染画布上限 1920×1440，避免大图卡渲染进程。
 - 浏览器禁用 IndexedDB 时壁纸只在当前会话有效。
 - 第三方主题若重定义上面用到的 token，毛玻璃观感会随主题变化，这是预期行为。
-- npm 包名 `dsh-wallpaper-glass` 与仓库名不同，见「安装」。
+- 仓库名与 npm 包名一致：`dsh-wallpaper-bgglass`。
 
 ## 开发
 

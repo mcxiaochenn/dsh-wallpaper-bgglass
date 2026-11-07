@@ -51,7 +51,7 @@ try {
 }
 
 if (pkg !== undefined) {
-  check(pkg.name === 'dsh-wallpaper-glass', `package name must be dsh-wallpaper-glass, found ${pkg.name}`);
+  check(pkg.name === 'dsh-wallpaper-bgglass', `package name must be dsh-wallpaper-bgglass, found ${pkg.name}`);
   check(/^\d+\.\d+\.\d+$/.test(pkg.version ?? ''), `package version must be semver, found ${pkg.version}`);
   check(pkg.type === 'module', 'package type must be module');
   check(pkg.dsh?.bundle?.patch === './cordis.patch.yml', 'dsh.bundle.patch must point at ./cordis.patch.yml');
@@ -70,8 +70,8 @@ if (pkg !== undefined) {
 if (exists('cordis.patch.yml')) {
   const patch = read('cordis.patch.yml');
   check(/^-\s*insert:/m.test(patch), 'cordis.patch.yml must insert a row');
-  check(/id:\s*dsh-wallpaper-glass\b/.test(patch), 'cordis.patch.yml must insert the dsh-wallpaper-glass row');
-  check(/name:\s*dsh-wallpaper-glass\b/.test(patch), 'cordis.patch.yml row must name the dsh-wallpaper-glass package');
+  check(/id:\s*dsh-wallpaper-bgglass\b/.test(patch), 'cordis.patch.yml must insert the dsh-wallpaper-bgglass row');
+  check(/name:\s*dsh-wallpaper-bgglass\b/.test(patch), 'cordis.patch.yml row must name the dsh-wallpaper-bgglass package');
 }
 
 // ---- locale documents ---------------------------------------------------
@@ -107,9 +107,9 @@ if (!exists(asset)) {
 try {
   const source = read('client.js');
   new Script(source, { filename: 'client.js' });
-  check(source.includes("id: 'dsh-wallpaper-glass'"), 'client.js must load the dsh-wallpaper-glass module id');
+  check(source.includes("id: 'dsh-wallpaper-bgglass'"), 'client.js must load the dsh-wallpaper-bgglass module id');
   check(source.includes('window.__ModuleLoader__.load'), 'client.js must register through __ModuleLoader__');
-  check(source.includes('/api/dsh-wallpaper-glass/default'), 'client.js must fetch the bundled wallpaper route');
+  check(source.includes('/api/dsh-wallpaper-bgglass/default'), 'client.js must fetch the bundled wallpaper route');
 } catch (error) {
   failures.push(`client.js failed to parse: ${error.message}`);
 }

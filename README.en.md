@@ -1,8 +1,8 @@
-# dsh-wallpaper-glass
+# dsh-wallpaper-bgglass
 
 [中文说明 / Chinese](README.md)
 
-![check](https://github.com/mcxiaochenn/dsh-wallpaper-bg/actions/workflows/check.yml/badge.svg)
+![check](https://github.com/mcxiaochenn/dsh-wallpaper-bgglass/actions/workflows/check.yml/badge.svg)
 
 Local wallpaper for the [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) web GUI, plus a matching set of adjustable glass surfaces for the sidebar, top bar and dialogs.
 
@@ -31,10 +31,10 @@ Requirements: DSH 0.2.0-rc.1 or newer, with the web GUI (`dsh-web-app`) in the p
 ### From npm (recommended)
 
 ```text
-plugin_manager install_bundle dsh-wallpaper-glass
+plugin_manager install_bundle dsh-wallpaper-bgglass
 ```
 
-> The npm package is `dsh-wallpaper-glass`; the GitHub repository is [dsh-wallpaper-bg](https://github.com/mcxiaochenn/dsh-wallpaper-bg) because the `dsh-wallpaper-bg` npm name is taken by another author's plugin.
+> The repository and the npm package share the same name, `dsh-wallpaper-bgglass`; the older `dsh-wallpaper-bg` and `dsh-wallpaper-glass` names are already taken on npm by other plugins.
 
 Reload the page afterwards (desktop: `Ctrl+R`, or `Ctrl+Shift+R` if unchanged). The plugin manager lists it as "壁纸 / Wallpaper".
 
@@ -50,7 +50,7 @@ npm config set registry https://registry.npmmirror.com
 pnpm config set registry https://registry.npmmirror.com
 ```
 
-Then run `plugin_manager install_bundle dsh-wallpaper-glass` again.
+Then run `plugin_manager install_bundle dsh-wallpaper-bgglass` again.
 
 To scope it to one installation, add a `.npmrc` inside the profile directory:
 
@@ -63,13 +63,13 @@ The mirror only affects downloads; the plugin itself makes no network requests, 
 ### From source (development)
 
 ```powershell
-git clone https://github.com/mcxiaochenn/dsh-wallpaper-bg.git
+git clone https://github.com/mcxiaochenn/dsh-wallpaper-bgglass.git
 ```
 
 Hand the **directory** to the plugin manager (absolute path):
 
 ```text
-plugin_manager install_bundle C:\path\to\dsh-wallpaper-bg
+plugin_manager install_bundle C:\path\to\dsh-wallpaper-bgglass
 ```
 
 A local directory install is a `link:` dependency: edit a file, reload the page, and the change is live.
@@ -77,7 +77,7 @@ A local directory install is a `link:` dependency: edit a file, reload the page,
 ### Uninstall
 
 ```text
-plugin_manager remove_bundle dsh-wallpaper-glass
+plugin_manager remove_bundle dsh-wallpaper-bgglass
 ```
 
 ## Usage
@@ -115,7 +115,7 @@ DSH has no official wallpaper extension point, so this plugin uses the host's re
 | Sidebar | `:has(> [data-slot="sidebar"])` (the sidebar column) | Overrides the column's `--dsw-specific-sidebar-fill` with a translucent colour; a `::before` layer supplies the backdrop blur |
 | Top bar | the frame's `::before` under `html[data-windows-titlebar]`; in web mode the `[data-slot="conversation.header"] header` | Same values drive both the caption row and the conversation header |
 | Dialogs | `[role="dialog"][aria-modal="true"]` | Host modals and the settings panel share this role; translucent fill + `::before` backdrop blur |
-| Bundled wallpaper | Host route `GET /api/dsh-wallpaper-glass/default` | Serves `assets/default-wallpaper.webp`; no base64 in the client bundle |
+| Bundled wallpaper | Host route `GET /api/dsh-wallpaper-bgglass/default` | Serves `assets/default-wallpaper.webp`; no base64 in the client bundle |
 
 Key decisions:
 
@@ -130,7 +130,7 @@ Key decisions:
 - Images are limited to 32 MB; the blurred rendition is capped at 1920×1440 to keep the renderer responsive.
 - With IndexedDB disabled, a wallpaper lasts for the current session only.
 - Third-party themes may redefine the tokens used here; the glass look follows the theme by design.
-- The npm package name differs from the repository name (see "Install").
+- The repository and npm package share the same name (`dsh-wallpaper-bgglass`).
 
 ## Development
 

@@ -1,5 +1,5 @@
 {
-  "name": "dsh-wallpaper-glass",
+  "name": "dsh-wallpaper-bgglass",
   "version": "1.0.0",
   "description": "DeepSeek Harness plugin: local wallpapers with opacity/blur and glass UI surfaces.",
   "license": "MIT",
@@ -45,11 +45,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mcxiaochenn/dsh-wallpaper-bg.git"
+    "url": "git+https://github.com/mcxiaochenn/dsh-wallpaper-bgglass.git"
   },
-  "homepage": "https://github.com/mcxiaochenn/dsh-wallpaper-bg#readme",
+  "homepage": "https://github.com/mcxiaochenn/dsh-wallpaper-bgglass#readme",
   "bugs": {
-    "url": "https://github.com/mcxiaochenn/dsh-wallpaper-bg/issues"
+    "url": "https://github.com/mcxiaochenn/dsh-wallpaper-bgglass/issues"
   },
   "dsh": {
     "bundle": {
